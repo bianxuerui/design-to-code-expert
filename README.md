@@ -3,11 +3,19 @@ Design-to-Code Expert 是一个专为 AI Agent 设计的高级 Skill，旨在将
 
 Installation
 Bash
+<<<<<<< HEAD
 npx skills add github:bianxuerui/design-to-code-expert
 或者通过 Agent Skills CLI：
 
 Bash
 npx agent-skills-cli install @bianxuerui/design-to-code-expert
+=======
+npx skills add github:你的用户名/design-to-code-expert
+或者通过 Agent Skills CLI：
+
+Bash
+npx agent-skills-cli install @你的用户名/design-to-code-expert
+>>>>>>> e160588 (feat: update README)
 Features
 Progressive Loading - 核心逻辑与技术规范、检查清单分离，按需加载，最大限度节省上下文。
 
