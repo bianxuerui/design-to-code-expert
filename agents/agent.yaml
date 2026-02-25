@@ -1,0 +1,7 @@
+interface:
+  display_name: "Design to Code Expert"
+  short_description: "Restore local HTML design drafts into current project stack with consistent workflow"
+  default_prompt: "Restore this local HTML design draft into my current project stack and language. Auto-detect framework and style system, confirm target path and overwrite policy, then implement with high fidelity and report deviations by P0-P3."
+
+# Agent-agnostic skill - works with any LLM provider.
+# No provider-specific configuration required.

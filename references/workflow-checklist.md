@@ -1,0 +1,44 @@
+# Workflow Checklist
+
+Use this checklist to enforce deterministic execution:
+
+- [ ] Step 0: Validate local HTML input `BLOCKING`
+  - [ ] 0.1 Path exists and is readable
+  - [ ] 0.2 File extension is `.html`
+  - [ ] 0.3 Runtime options parsed successfully
+- [ ] Step 1: Detect project stack `BLOCKING`
+  - [ ] 1.1 Run `scripts/detect_stack.py`
+  - [ ] 1.2 Record `framework/language/style_system/package_manager`
+  - [ ] 1.3 Evaluate confidence and fallback rule
+- [ ] Step 2: Inspect HTML structure and tokens
+  - [ ] 2.1 Run `scripts/inspect_html.py`
+  - [ ] 2.2 Capture structural blocks and reusable components
+  - [ ] 2.3 Capture visual tokens and interaction points
+- [ ] Step 3: Build restoration strategy
+  - [ ] 3.1 Load framework mapping file
+  - [ ] 3.2 Load style mapping file
+  - [ ] 3.3 Run `scripts/suggest_target_path.py`
+- [ ] Step 4: Confirm plan with user `REQUIRED`
+  - [ ] 4.1 Confirm target path and overwrite policy
+  - [ ] 4.2 Confirm scope and fidelity mode
+  - [ ] 4.3 Confirm known limitations
+- [ ] Step 5: Implement restoration
+  - [ ] 5.1 Apply structure mapping
+  - [ ] 5.2 Apply style mapping
+  - [ ] 5.3 Preserve interaction semantics
+- [ ] Step 6: Run quality gates
+  - [ ] 6.1 Lint (if available)
+  - [ ] 6.2 Type check (if available)
+  - [ ] 6.3 Build check (if available)
+- [ ] Step 7: Pre-delivery verification `REQUIRED`
+  - [ ] 7.1 Run visual and structural checks
+  - [ ] 7.2 Grade deviations via P0-P3
+- [ ] Step 8: Produce structured output
+  - [ ] 8.1 Report detection and analysis summary
+  - [ ] 8.2 Report changed/planned files
+  - [ ] 8.3 Report deviations and risks
+- [ ] Step 9: Ask next-step fix scope `REQUIRED`
+  - [ ] 9.1 Fix all
+  - [ ] 9.2 Fix P0/P1 only
+  - [ ] 9.3 Fix specific items
+  - [ ] 9.4 Stop
