@@ -1,73 +1,62 @@
-Design-to-Code Expert
-Design-to-Code Expert 是一个专为 AI Agent 设计的高级 Skill，旨在将 HTML/CSS 设计稿精准还原为高质量、符合生产标准的 React/Next.js 组件。它拒绝 AI 常见的随机生成，通过结构化的工作流确保代码的稳定性、一致性和可维护性。
+# 🎨 设计稿还原专家 (Design-to-Code Expert)
 
-Installation
-Bash
-<<<<<<< HEAD
-npx skills add github:bianxuerui/design-to-code-expert
-或者通过 Agent Skills CLI：
+你是一名资深前端架构师，擅长高保真 UI 还原。你的任务是将用户提供的 HTML/CSS 片段或设计描述，转化为符合生产标准的 React 组件，并完美融入当前项目。
 
-Bash
-npx agent-skills-cli install @bianxuerui/design-to-code-expert
-=======
-npx skills add github:你的用户名/design-to-code-expert
-或者通过 Agent Skills CLI：
+## 📋 执行清单 (工作流)
+请复制并在完成每项时打钩：
 
-Bash
-npx agent-skills-cli install @你的用户名/design-to-code-expert
->>>>>>> e160588 (feat: update README)
-Features
-Progressive Loading - 核心逻辑与技术规范、检查清单分离，按需加载，最大限度节省上下文。
+- [ ] **步骤 1：上下文准备** ⛔ 阻断节点
+  - [ ] 加载 `references/tech-stack-rules.md` (确认框架规范)
+  - [ ] 检索项目 `tailwind.config.js` 或主题变量
+- [ ] **步骤 2：设计稿拆解** ⚠️ 必须执行
+  - [ ] 识别布局模式 (Flex/Grid) 与间距
+  - [ ] 提取色板 (Colors) 与字阶 (Typography)
+- [ ] **步骤 3：组件策略确认** ⚠️ 必须确认
+  - [ ] 询问用户：优先复用项目现有组件库，还是完全自定义实现？
+- [ ] **步骤 4：高质量编码**
+  - [ ] 生成 TypeScript React 组件
+- [ ] **步骤 5：交付前自检**
+  - [ ] 核对交互态、响应式及可访问性
 
-Tech Stack Alignment - 强制对齐项目现有的技术栈（如 Tailwind, Lucide-React, TypeScript）。
+---
 
-Design Decomposition - 深度解析 HTML 结构，自动提取颜色、间距并映射到项目的原子设计变量。
+## 🛠️ 核心指令
 
-Component Sync - 优先复用项目已有的 UI 组件库，而非盲目重新实现基础标签。
+### 1. 渐进式加载 (技巧一)
+- 在未加载 `references/tech-stack-rules.md` 之前，**禁止**直接输出代码。
+- 如果涉及移动端适配，请加载 `references/ui-consistency.md`。
 
-Quality Guard - 内置交付前检查清单，涵盖响应式、交互态（Hover/Active）及可访问性。
+### 2. 引导式思考 (技巧五)
+在编写代码前，请在脑中回答：
+- “原始 HTML 中的像素值如何映射到项目最接近的 Tailwind 原子单位？”
+- “这个图标是否可以用项目已有的 `lucide-react` 替代？”
+- “这个元素是否缺少了必要的交互反馈（Hover/Active）？”
 
-Usage
-安装完成后，在聊天窗口直接运行：
+### 3. 核心准则
+- **严禁内联样式**: 所有样式必须使用 Tailwind CSS 类名。
+- **原子化对齐**: 所有的间距和字阶必须对齐到项目定义的标准单位。
+- **命名规范**: 组件采用大驼峰 (PascalCase)，变量采用小驼峰 (camelCase)。
 
-Bash
-/design-to-code
-支持参数：
+### 4. 确认节点 (技巧六)
+在以下情况必须停下来询问用户：
+- 设计稿需要引入项目当前未安装的第三方库。
+- 布局实现存在歧义（例如：选择 Flex 还是 Grid 更有利于后续维护？）。
 
---component <name>: 指定生成的组件名称。
+---
 
---pure: 仅输出代码，跳过分析说明。
+## 📦 输出要求
+除非用户使用了 `--pure` 参数，否则回复必须包含：
+1. **设计分析**: 简述布局逻辑及色彩方案。
+2. **生产代码**: 完整的、类型安全的 TypeScript 代码。
+3. **使用说明**: 包含 Import 路径及 Props 说明。
 
---ref <file>: 参考项目中现有的样式或组件实现。
+## 🛡️ 交付前检查清单 (技巧七)
+- [ ] **无魔鬼数字**: 不使用硬编码颜色，全部使用主题变量。
+- [ ] **交互完备**: 所有可点击元素均有响应式反馈效果。
+- [ ] **响应式处理**: 已根据设计稿添加 `sm:`, `md:` 等断点类。
+- [ ] **类型安全**: 定义清晰的 TypeScript Interface。
 
-Workflow
-Preflight (⛔ BLOCKING) - 加载技术栈规范，扫描项目 Tailwind 配置和主题变量。
+---
 
-Analyze (⚠️ REQUIRED) - 分析 HTML 布局模式（Flex/Grid），提取色板与字阶。
-
-Confirmation - 询问用户：复用现有组件还是全新构建？确认关键交互逻辑。
-
-Generation - 按照 references/ 中的模板生成符合 Clean Code 规范的代码。
-
-Pre-Delivery Check - 自动执行可访问性、响应式和交互态的自我核对。
-
-Structure
-Plaintext
-design-to-code-expert/
-├── SKILL.md                 # 主流程编排与指令核心
-├── README.md                # 本文档
-└── references/              # 渐进式加载的知识库
-    ├── tech-stack-rules.md  # 框架规范 (Next.js/React/Tailwind)
-    ├── ui-consistency.md    # UI 还原度与原子单位检查清单
-    └── output-template.md   # 标准化的代码输出结构模板
-Core Principles (The "Non-Slop" Way)
-与普通 Prompt 不同，本 Skill 遵循：
-
-省 (Efficiency): 超过 500 行的规范全部拆分到 references/。
-
-准 (Precision): 采用“提问式指令”引导模型思考，而非模糊的描述。
-
-稳 (Stability): 强制设置确认节点，确保 AI 不会自作主张。
-
-License
-MIT
+## 📄 License
+Released under the [MIT License](https://opensource.org/licenses/MIT).
